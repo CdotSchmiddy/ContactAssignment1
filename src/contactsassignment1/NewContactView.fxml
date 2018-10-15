@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="contactsassignment1.NewContactController">
+    <stylesheets>
+        <URL value="@newcontactview.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey; -fx-border-color: black;">
+         <children>
+            <VBox layoutX="335.0" layoutY="100.0" prefHeight="200.0" prefWidth="207.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="firstNameTextField" prefWidth="210.0" />
+                  <TextField fx:id="lastNameTextField" />
+                  <DatePicker fx:id="birthday" />
+                  <TextField fx:id="addressTextField" />
+                  <TextField fx:id="phoneTextField" />
+               </children>
+            </VBox>
+            <VBox layoutX="226.0" layoutY="105.0" prefHeight="169.0" prefWidth="100.0" spacing="14.0">
+               <children>
+                  <Label text="First Name" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Last Name" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Birthday" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Address" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Phone" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label layoutX="243.0" layoutY="25.0" text="Profile" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="40.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Label>
+            <ImageView fx:id="imageView" fitHeight="191.0" fitWidth="201.0" layoutX="14.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="478.0" layoutY="317.0" mnemonicParsing="false" onAction="#cancelContactButtonPushed" text="Cancel" />
+            <Button layoutX="414.0" layoutY="317.0" mnemonicParsing="false" onAction="#saveContactButttonPushed" text="Save" />
+            <Button layoutX="57.0" layoutY="317.0" mnemonicParsing="false" onAction="#chooseImageButtonPushed" text="Choose Image" />
+            <Label fx:id="errMsgLabel" layoutX="283.0" layoutY="365.0" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
