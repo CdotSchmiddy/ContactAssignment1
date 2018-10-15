@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="contactsassignment1.NewContactController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contactsassignment1.NewContactController">
     <stylesheets>
         <URL value="@newcontactview.css" />
     </stylesheets>
@@ -67,10 +67,10 @@
                </effect>
             </Label>
             <ImageView fx:id="imageView" fitHeight="191.0" fitWidth="201.0" layoutX="14.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="478.0" layoutY="317.0" mnemonicParsing="false" onAction="#cancelContactButtonPushed" text="Cancel" />
-            <Button layoutX="414.0" layoutY="317.0" mnemonicParsing="false" onAction="#saveContactButttonPushed" text="Save" />
+            <Button layoutX="478.0" layoutY="317.0" mnemonicParsing="false" onAction="#cancelButtonPushed" text="Cancel" />
+            <Button layoutX="414.0" layoutY="317.0" mnemonicParsing="false" onAction="#saveContactButtonPushed" text="Save" />
             <Button layoutX="57.0" layoutY="317.0" mnemonicParsing="false" onAction="#chooseImageButtonPushed" text="Choose Image" />
-            <Label fx:id="errMsgLabel" layoutX="283.0" layoutY="365.0" />
+            <Label fx:id="errMsgLabel" layoutX="42.0" layoutY="365.0" prefHeight="21.0" prefWidth="519.0" />
          </children>
          <effect>
             <DropShadow />

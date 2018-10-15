@@ -18,11 +18,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,14 +43,19 @@ public class ContactsController implements Initializable {
     @FXML private TableColumn<Contacts, String> addressColumn;
     @FXML private TableColumn<Contacts, String> phoneColumn;
     
-    @FXML private Button newContactButton;
     @FXML private Button editContactButton;
     @FXML private Button searchButton;
     
         public void newContactButtonPushed(ActionEvent event) throws IOException
     {
-        SceneChanger sc = new SceneChanger();
-        sc.changeScenes(event, "NewContactView.fxml", "Create New Contact");
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("NewContactView.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
     }
     
     /**
@@ -80,18 +90,18 @@ public class ContactsController implements Initializable {
             ResultSet resultSet = null;
         
             try{
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/contacts?useSSL=false", "root", "root");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/contacts?useSSL=false", "root", "");
                 statement = conn.createStatement();
                 resultSet = statement.executeQuery("SELECT * FROM contacts");
             
                 while (resultSet.next())
                 {
-                    Contacts newContacts = new Contacts(resultSet.getString("firstName"),
-                                                        resultSet.getString("lastName"),
-                                                        resultSet.getString("address"),
-                                                        resultSet.getString("phoneNumber"),
-                                                        resultSet.getDate("birthday").toLocalDate());
-                    newContacts.setContactID(resultSet.getInt("contactID"));
+                    Contacts newContacts = new Contacts(resultSet.getString("contact_firstname"),
+                                                        resultSet.getString("contact_lastname"),
+                                                        resultSet.getString("contact_address"),
+                                                        resultSet.getString("contact_phonenumber"),
+                                                        resultSet.getDate("contact_birthday").toLocalDate());
+                    newContacts.setContactID(resultSet.getInt("contact_ID"));
                     newContacts.setImageFile(new File(resultSet.getString("imageFile")));
                 
                     contacts.add(newContacts);

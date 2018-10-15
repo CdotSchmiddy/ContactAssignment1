@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="684.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contactsassignment1.ContactsController">
+    <stylesheets>
+        <URL value="@contacts.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="-2.0" prefHeight="462.0" prefWidth="691.0" style="-fx-background-color: grey; -fx-border-color: black;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Label layoutX="259.0" layoutY="26.0" prefHeight="63.0" prefWidth="173.0" text="Contacts" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Demi" size="40.0" />
+               </font>
+               <effect>
+                  <Glow level="0.53" />
+               </effect>
+            </Label>
+            <TableView fx:id="contactsTable" layoutX="39.0" layoutY="111.0" prefHeight="223.0" prefWidth="611.0">
+              <columns>
+                <TableColumn fx:id="contactsIDColumn" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="firstNameColumn" prefWidth="101.0" text="First Name" />
+                  <TableColumn fx:id="lastNameColumn" prefWidth="164.0" text="Last Name" />
+                  <TableColumn fx:id="addressColumn" prefWidth="136.0" text="Address" />
+                  <TableColumn fx:id="phoneColumn" prefWidth="133.0" text="Phone" />
+              </columns>
+            </TableView>
+            <Button layoutX="497.0" layoutY="376.0" mnemonicParsing="false" onAction="#newContactButtonPushed" text="Create New Contact" />
+            <Button fx:id="editContactButton" layoutX="345.0" layoutY="376.0" mnemonicParsing="false" text="Edit Contact" />
+            <Button fx:id="searchButton" layoutX="235.0" layoutY="376.0" mnemonicParsing="false" text="Search" />
+            <TextField layoutX="23.0" layoutY="376.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -15,8 +15,11 @@ import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -49,9 +52,14 @@ public class NewContactController implements Initializable {
 
     public void cancelButtonPushed(ActionEvent event) throws IOException
     {
-        SceneChanger sc = new SceneChanger();
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("ContactsTableView.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
         
-            sc.changeScenes(event, "ContactsTableView.fxml", "Contacts");
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
     }
     
 
@@ -111,7 +119,7 @@ public class NewContactController implements Initializable {
         errMsgLabel.setText("");
         
         try{
-            imageFile = new File("./src/images/defaultPerson.png");
+            imageFile = new File("defaultPerson.png");
             BufferedImage bufferedImage = ImageIO.read(imageFile);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
             imageView.setImage(image);
@@ -123,30 +131,37 @@ public class NewContactController implements Initializable {
         }
     }    
     
-    public void saveContactButtonPushed(ActionEvent event) throws SQLException
-    {
-        {
+    public void saveContactButtonPushed(ActionEvent event) throws SQLException, IOException
+{
+            try
+            {
                 {
                     if (imageFileChanged)
                     {
-                        contact = new Contacts(firstNameTextField.getText(),lastNameTextField.getText(),
-                                                        phoneTextField.getText(),  addressTextField.getText(),
-                                                        birthday.getValue());
+                        contact = new Contacts(firstNameTextField.getText(), lastNameTextField.getText(),
+                                               addressTextField.getText(), phoneTextField.getText(), birthday.getValue());
                     }
                     else
                     {
-                        contact = new Contacts(firstNameTextField.getText(),lastNameTextField.getText(),
-                                                        phoneTextField.getText(), addressTextField.getText(), 
-                                                        birthday.getValue());
+                        contact = new Contacts(firstNameTextField.getText(), lastNameTextField.getText(),
+                                               addressTextField.getText(), phoneTextField.getText(), birthday.getValue());
                     }
                     errMsgLabel.setText("");
                     contact.insertIntoDB();    
                 }
 
-                SceneChanger sc = new SceneChanger();
-                sc.changeScenes(event, "ContactsTableView.fxml", "Contacts");
-
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("ContactsTableView.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
+            }
+            catch (Exception e)
+            {
+                errMsgLabel.setText(e.getMessage());
+            }
         }
     }
-
-}

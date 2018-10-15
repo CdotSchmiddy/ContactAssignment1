@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author jaret_000
+ * @author Calum
  */
 public class LaunchContacts extends Application{
     

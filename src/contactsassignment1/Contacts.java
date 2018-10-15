@@ -25,7 +25,7 @@ public class Contacts {
         setAddress(address);
         setPhoneNumber(phoneNumber);
         setBirthday(birthday);
-        setImageFile(new File("./src/images/defaultPerson.png"));
+        setImageFile(new File("defaultPerson.png"));
     }
 
     public String getFirstName() {
@@ -57,7 +57,7 @@ public class Contacts {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber.matches("[2-9]\\d{2}[-.]?\\d{3}[-.]\\d{4}"))
+        if (phoneNumber.matches("\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}"))
             this.phoneNumber = phoneNumber;
         else
             throw new IllegalArgumentException("Any phone number must be in the pattern of NXX-XXX-XXXX");
@@ -102,20 +102,16 @@ public class Contacts {
         
         try
         {
-            //1. Connect to the database
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/contacts?useSSL=false", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/contacts?useSSL=false", "root", "");
             
-            //2. Create a String that holds the query with ? as user inputs
-            String sql = "INSERT INTO volunteers (firstName, lastName, address, phoneNumber, birthday, imageFile)"
+            String sql = "INSERT INTO contacts (contact_firstname, contact_lastname, contact_address, contact_phonenumber, contact_birthday, imageFile)"
                     + "VALUES (?,?,?,?,?,?)";
                     
-            //3. prepare the query
             preparedStatement = conn.prepareStatement(sql);
             
-            //4. Convert the birthday into a SQL date
             Date db = Date.valueOf(birthday);
                    
-            //5. Bind the values to the parameters
+
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
             preparedStatement.setString(3, address);
